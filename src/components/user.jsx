@@ -1,35 +1,56 @@
-import React, {useState} from 'react';
+import React from "react";
 import Qualitie from "./qualitie";
 import Bookmark from "./bookmark";
+import PropTypes from "prop-types";
 
-const User = (props) => {
-
-  const [active, setActive] = useState(false);
-
-  const handleClick = () => {
-    setActive(prevState => !prevState);
-  }
-
+const User = ({
+  _id,
+  name,
+  qualities,
+  profession,
+  completedMeetings,
+  rate,
+  onDelete,
+  bookmark,
+  onToggleBookMark,
+}) => {
   return (
-    <tr key={props._id}>
-      <td>{props.name}</td>
+    <tr>
+      <td>{name}</td>
       <td>
-        {props.qualities.map(qualitie =>
+        {qualities.map((qualitie) => (
           <Qualitie key={qualitie._id} {...qualitie} />
-        )}
+        ))}
       </td>
-      <td>{props.profession.name}</td>
-      <td>{props.completedMeetings}</td>
-      <td>{props.rate} / 5</td>
+      <td>{profession.name}</td>
+      <td>{completedMeetings}</td>
+      <td>{rate} / 5</td>
       <td>
-        <Bookmark active={active} onClick={handleClick}/>
+        <Bookmark status={bookmark} onClick={() => onToggleBookMark(_id)} />
       </td>
       <td>
-        <button onClick={() => props.onDelete(props._id)}
-                type="button" className="btn btn-danger">delete</button>
+        <button
+          onClick={() => onDelete(_id)}
+          type="button"
+          className="btn btn-danger"
+        >
+          delete
+        </button>
       </td>
     </tr>
   );
+};
+
+User.propTypes = {
+  _id: PropTypes.number.isRequired,
+  qualities: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  profession: PropTypes.string.isRequired,
+  completedMeetings: PropTypes.number.isRequired,
+  rate: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  bookmark: PropTypes.bool.isRequired,
+  onToggleBookMark: PropTypes.func.isRequired
 };
 
 export default User;

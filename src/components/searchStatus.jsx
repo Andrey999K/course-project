@@ -1,16 +1,25 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const SearchStatus = ({number}) => {
+const SearchStatus = ({ number }) => {
+  const renderPhrase = (length) => {
+    if (!length) return "Никто с тобой не тусанёт";
+    return `${length} ${
+      length > 1 && length < 5 ? "человека тусанут" : "человек тусанёт"
+    } с тобой сегодня`;
+  };
 
-  if (number !== 0) {
-    let phrase = "";
-    if (number > 1 && number < 5) phrase = "человека тусанут";
-    else phrase = "человек тусанёт";
-    return <h1><span className="badge bg-primary">{number} {phrase} с тобой сегодня</span></h1>;
-  } else {
-    return <h1><span className="badge bg-danger">Никто с тобой не тусанёт</span></h1>;
-  }
+  return (
+    <h1>
+      <span className={"badge bg-" + (number > 0 ? "primary" : "danger")}>
+        {renderPhrase(number)}
+      </span>
+    </h1>
+  );
+};
 
+SearchStatus.propTypes = {
+  number: PropTypes.number.isRequired
 };
 
 export default SearchStatus;
