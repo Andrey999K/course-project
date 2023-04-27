@@ -42,10 +42,10 @@ const User = ({
 };
 
 User.propTypes = {
-  _id: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
   qualities: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
-  profession: PropTypes.string.isRequired,
+  profession: PropTypes.object.isRequired,
   completedMeetings: PropTypes.number.isRequired,
   rate: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
