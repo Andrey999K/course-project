@@ -10,6 +10,14 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
+  ignorePatterns: [
+    "node_modules/",
+    "dist/",
+    "public/",
+    "build/",
+    "*.min.js",
+    "src/dev/"
+  ],
   rules: {
     indent: ["error", 2],
     semi: [2, "always"],
