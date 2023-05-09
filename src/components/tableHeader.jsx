@@ -7,6 +7,13 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
       onSort({ ...selectedSort, order: selectedSort.order === "asc" ? "desc" : "asc" });
     } else onSort({ path: field, order: "asc" });
   };
+  const showSort = (field) => {
+    if (selectedSort.path === field.path) {
+      if (selectedSort.order === "asc") return <i className="bi bi-caret-up-fill"></i>;
+      return <i className="bi bi-caret-down-fill"></i>;
+    }
+    return false;
+  };
   return (
     <thead>
       <tr>
@@ -17,7 +24,8 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
             scope="col"
             {...{ role: columns[column].path && "button" }}
           >
-            {columns[column].name}
+            <span>{columns[column].name}</span>
+            {showSort(columns[column])}
           </th>
         ))}
       </tr>
