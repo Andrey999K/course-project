@@ -9,8 +9,8 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
   };
   const showSort = (field) => {
     if (selectedSort.path === field.path) {
-      if (selectedSort.order === "asc") return <i className="bi bi-caret-up-fill"></i>;
-      return <i className="bi bi-caret-down-fill"></i>;
+      const isAsc = selectedSort.order === "asc";
+      return <i className={`bi bi-caret-${isAsc ? "up" : "down"}-fill`} />;
     }
     return false;
   };

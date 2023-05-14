@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Pagination from "./pagination";
+import Pagination from "../components/pagination";
 import { paginate } from "../utils/paginate";
-import GroupList from "./groupList";
+import GroupList from "../components/groupList";
 import api from "../api";
-import SearchStatus from "./searchStatus";
-import UsersTable from "./usersTable";
+import SearchStatus from "../components/searchStatus";
+import UsersTable from "../components/usersTable";
 import { orderBy } from "lodash";
 
 const Users = () => {

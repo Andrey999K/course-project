@@ -23,6 +23,7 @@ module.exports = {
     semi: [2, "always"],
     "space-before-function-paren": ["error", {anonymous: "always", named: "never"}],
     quotes: ["error", "double", { allowTemplateLiterals: true }],
-    "comma-dangle": ["error", "only-multiline"]
+    "comma-dangle": ["error", "only-multiline"],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }]
   },
 };
