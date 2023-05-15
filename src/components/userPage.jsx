@@ -28,7 +28,7 @@ const UserPage = () => {
       <QualitiesList qualities={user.qualities} />
       <div>Completed Meetings: {user.completedMeetings}</div>
       <h2>Rate: {user.rate}</h2>
-      <button onClick={goToList}>All Users</button>
+      <button onClick={goToList}>Все пользователи</button>
     </>
   );
 };
