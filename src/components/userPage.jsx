@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import api from "../api";
 import QualitiesList from "./qualitiesList";
+import PropTypes from "prop-types";
 
-const UserPage = () => {
+const UserPage = ({ userId }) => {
   const [user, setUser] = useState(null);
-  const { id } = useParams();
   const history = useHistory();
 
-  const goToList = () => {
+  const handleClick = () => {
     history.push("/users");
   };
 
   useEffect(() => {
-    api.users.getById(id)
+    api.users.getById(userId)
       .then(data => setUser(data));
   }, []);
 
@@ -26,11 +26,15 @@ const UserPage = () => {
       <h1>{user.name}</h1>
       <h2>Profession: {user.profession.name}</h2>
       <QualitiesList qualities={user.qualities} />
-      <div>Completed Meetings: {user.completedMeetings}</div>
+      <p>Completed Meetings: {user.completedMeetings}</p>
       <h2>Rate: {user.rate}</h2>
-      <button onClick={goToList}>Все пользователи</button>
+      <button onClick={handleClick}>Все пользователи</button>
     </>
   );
+};
+
+UserPage.propTypes = {
+  userId: PropTypes.string.isRequired
 };
 
 export default UserPage;
