@@ -21,7 +21,7 @@ Table.propTypes = {
   selectedSort: PropTypes.object,
   columns: PropTypes.object,
   data: PropTypes.array,
-  children: PropTypes.array
+  children: PropTypes.array,
 };
 
 export default Table;

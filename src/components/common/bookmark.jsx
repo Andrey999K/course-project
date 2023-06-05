@@ -14,7 +14,7 @@ const Bookmark = ({ status, onClick }) => {
 
 Bookmark.propTypes = {
   status: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Bookmark;

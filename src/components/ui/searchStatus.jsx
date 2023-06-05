@@ -19,7 +19,7 @@ const SearchStatus = ({ number }) => {
 };
 
 SearchStatus.propTypes = {
-  number: PropTypes.number.isRequired
+  number: PropTypes.number.isRequired,
 };
 
 export default SearchStatus;
