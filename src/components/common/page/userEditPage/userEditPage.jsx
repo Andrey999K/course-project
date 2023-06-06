@@ -6,12 +6,14 @@ import SelectField from "../../form/selectField";
 import RadioField from "../../form/radioField";
 import MultiSelectField from "../../form/multiSelectField";
 import PropTypes from "prop-types";
+import { validator } from "../../../../utils/validator";
 
 const UserEditPage = ({ data, onSubmit }) => {
   const history = useHistory();
   const [user, setUser] = useState(data);
   const [professions, setProfessions] = useState([]);
   const [qualities, setQualities] = useState([]);
+  const [errors, setErrors] = useState({});
   const { userId } = useParams();
   const handleChange = ({ name, value }) => {
     setUser(prevState => ({ ...prevState, [name]: value }));
@@ -36,15 +38,52 @@ const UserEditPage = ({ data, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(user);
+    const isValid = validate();
+    if (!isValid) return;
     onSubmit(user);
     history.push(`/users/${userId}`);
   };
+  const validatorConfig = {
+    name: {
+      isRequired: {
+        message: "Пожалуйста заполните имя"
+      }
+    },
+    email: {
+      isRequired: {
+        message: "Пожалуйста заполните электронную почту"
+      },
+      isEmail: {
+        message: "Email введён некорректно"
+      },
+    }
+  };
+  const validate = () => {
+    const errors = validator(user, validatorConfig);
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+  useEffect(() => {
+    validate();
+  }, [user]);
   const showForm = () => {
     if (!user) return <span>Loading...</span>;
     return (
       <form onSubmit={handleSubmit}>
-        <TextField onChange={handleChange} name="name" label="Имя" value={user.name} />
-        <TextField onChange={handleChange} name="email" label="Электронная почта" value={user.email} />
+        <TextField
+          onChange={handleChange}
+          name="name"
+          label="Имя"
+          value={user.name}
+          error={errors.name}
+        />
+        <TextField
+          onChange={handleChange}
+          name="email"
+          label="Электронная почта"
+          value={user.email}
+          error={errors.email}
+        />
         <SelectField
           onChange={handleChangeProfession}
           name="profession"

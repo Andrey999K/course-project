@@ -9,11 +9,8 @@ const UserPage = ({ userId }) => {
   const location = useLocation().pathname;
   const history = useHistory();
   const handleClick = () => {
-    console.log(location + "/edit");
     history.push(location + "/edit");
   };
-
-  console.log(location === `/users/${userId}/edit`);
 
   useEffect(() => {
     api.users.getById(userId).then((data) => setUser(data));
@@ -29,16 +26,19 @@ const UserPage = ({ userId }) => {
 
   return (
     <>
-      {location === `/users/${userId}/edit` ? <UserEditPage data={user} onSubmit={handleSubmit} /> : (
-        <>
-          <h1>{user.name}</h1>
-          <h2>Profession: {user.profession.name}</h2>
-          <QualitiesList qualities={user.qualities} />
-          <p>Completed Meetings: {user.completedMeetings}</p>
-          <h2>Rate: {user.rate}</h2>
-          <button onClick={handleClick}>Изменить</button>
-        </>
-      )}
+      {location === `/users/${userId}/edit`
+        ? <UserEditPage data={user} onSubmit={handleSubmit} />
+        : (
+          <>
+            <h1>{user.name}</h1>
+            <h2>Profession: {user.profession.name}</h2>
+            <QualitiesList qualities={user.qualities} />
+            <p>Completed Meetings: {user.completedMeetings}</p>
+            <h2>Rate: {user.rate}</h2>
+            <button onClick={handleClick}>Изменить</button>
+          </>
+        )
+      }
     </>
   );
 };
