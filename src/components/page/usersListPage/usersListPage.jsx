@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Pagination from "../../pagination";
-import { paginate } from "../../../../utils/paginate";
-import GroupList from "../../groupList";
-import api from "../../../../api";
-import SearchStatus from "../../../ui/searchStatus";
-import UsersTable from "../../../ui/usersTable";
+import Pagination from "../../common/pagination";
+import { paginate } from "../../../utils/paginate";
+import GroupList from "../../common/groupList";
+import api from "../../../api";
+import SearchStatus from "../../ui/searchStatus";
+import UsersTable from "../../ui/usersTable";
 import { orderBy } from "lodash";
-import Search from "../../search";
+import Search from "../../common/search";
 
 const UsersListPage = () => {
   const pageSize = 8;
