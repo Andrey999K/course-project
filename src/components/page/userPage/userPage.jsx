@@ -32,17 +32,6 @@ const UserPage = ({ userId }) => {
           <div className="col-md-4 mb-3">
             <div className="card mb-3">
               <div className="card-body">
-                <button
-                  onClick={handleClick}
-                  className="
-                                  position-absolute
-                                  top-0
-                                  end-0
-                                  btn btn-light btn-sm
-                              "
-                >
-                  <i className="bi bi-gear"></i>
-                </button>
                 <div
                   className="
                                   d-flex
@@ -84,6 +73,17 @@ const UserPage = ({ userId }) => {
                     </div>
                   </div>
                 </div>
+                <button
+                  onClick={handleClick}
+                  className="
+                                  position-absolute
+                                  top-0
+                                  end-0
+                                  btn btn-light btn-sm
+                              "
+                >
+                  <i className="bi bi-gear"></i>
+                </button>
               </div>
             </div>
 
@@ -105,22 +105,21 @@ const UserPage = ({ userId }) => {
                 </div>
               </div>
             </div>
+
             <div className="card mb-3">
-              <div className="card mb-3">
-                <div
-                  className="
-                                  card-body
-                                  d-flex
-                                  flex-column
-                                  justify-content-center
-                                  text-center
-                              "
-                >
-                  <h5 className="card-title">
-                    <span>Completed meetings</span>
-                  </h5>
-                  <h1 className="display-1">{user.completedMeetings}</h1>
-                </div>
+              <div
+                className="
+                                card-body
+                                d-flex
+                                flex-column
+                                justify-content-center
+                                text-center
+                            "
+              >
+                <h5 className="card-title">
+                  <span>Completed meetings</span>
+                </h5>
+                <h1 className="display-1">{user.completedMeetings}</h1>
               </div>
             </div>
           </div>

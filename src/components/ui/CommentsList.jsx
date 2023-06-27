@@ -8,6 +8,10 @@ const CommentsList = ({ data, onDelete, onSubmit, userId }) => {
   const [newComment, setNewComment] = useState({ pageId: userId, userId: "", content: "" });
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (newComment.content.trim() === "") {
+      setNewComment(prevState => ({ ...prevState, content: "" }));
+      return;
+    }
     onSubmit(newComment);
     setNewComment({ pageId: userId, userId: "", content: "" });
   };
